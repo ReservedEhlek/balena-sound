@@ -42,17 +42,15 @@ echo "Device name: $SOUND_DEVICE_NAME"
 [[ -n ${SOUND_SPOTIFY_ENABLE_CACHE+x} ]] && echo "Spotify audio cache enabled."
 
 set -- /usr/bin/librespot \
-  --backend pipe \
+  --backend pulseaudio \
   --name "$SOUND_DEVICE_NAME" \
   --cache /var/cache/raspotify \
   --volume-ctrl linear \
   --initial-volume=30 \
   -v \
-  | pacat --latency-msec=20
 #  --bitrate "$SOUND_SPOTIFY_BITRATE" \
 #  --format S32 \
 #  --dither none \
-
   "$@"
 
 exec "$@"
