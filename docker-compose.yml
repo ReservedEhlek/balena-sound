@@ -58,7 +58,7 @@ services:
 
   spotify:
     build: ./plugins/spotify
-    restart: on-failure
+    restart: unless-stopped
     privileged: true
     network_mode: host
     volumes:
